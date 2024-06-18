@@ -1,0 +1,57 @@
+<ng-template #loading>
+  <div class="alert alert-info text-center">
+    Espere por favor
+  </div>
+</ng-template>
+
+<div *ngIf="country; else loading">
+  <div class="row">
+    <div class="col-12">
+      <h2>País: <strong>{{country.name.common}}</strong></h2>
+      <hr>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-4">
+    <h3>Bandera</h3>
+    <img [src]="country.flags.svg" [alt]="country.name.common" class="img-thumbnail">
+  </div>
+  <div class="col">
+    <h3>Información</h3>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <strong>Nombre oficial: </strong>{{country.translations['spa'].official}}
+      </li>
+      <li class="list-group-item">
+        <strong>Población: </strong>{{country.population | number}}
+      </li>
+      <li class="list-group-item">
+        <strong>Codigo: </strong>{{country.cca3}}
+      </li>
+      <li class="list-group-item">
+        <strong>Región: </strong>{{country.region}}
+      </li>
+      <li class="list-group-item">
+        <strong>Latitud: </strong>{{country.latlng}}
+      </li>
+      <li class="list-group-item">
+        <strong>Zona horaria: </strong>{{country.timezones}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row mt-2">
+  <div class="col">
+    <h3>Traducciones</h3>
+    <div class="d-flex flex-wrap">
+      <!--<span class="badge bg-primary m-1">{{country.translations['ara'].common}}</span>-->
+      <span class="badge bg-primary m-1" *ngFor="let translation of allTranslations">{{translation.common}}</span>
+    </div>
+    <h3>Ubicación</h3>
+    <span class="btn btn-primary m-1"><a href="{{country.maps.googleMaps}}" target="_blank">Google Maps</a></span>
+    <span class="btn btn-primary m-1"><a href="{{country.maps.openStreetMaps}}" target="_blank">Open Street</a></span>
+  </div>
+</div>
+</div>
